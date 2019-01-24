@@ -1,7 +1,7 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#ccaa0300"
+    android:background="@color/colorAccent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
         android:layout_width="match_parent"
@@ -24,11 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:id="@+id/But1"/>
+        android:id="@+id/But1"
+        android:background="@color/buttoncolor"
+            />
     <Button
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/But2"
-        android:text="Register"/>
+        android:text="Register"
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

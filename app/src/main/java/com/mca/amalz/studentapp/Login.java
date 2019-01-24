@@ -1,6 +1,7 @@
 package com.mca.amalz.studentapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity {
 EditText ed1,ed2;
 Button but1,but2;
-String str1,str2;
+String str1,str2,checkusn;
 String usn="mzc",id="college";
 
 
@@ -19,6 +20,16 @@ String usn="mzc",id="college";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        SharedPreferences pref=getSharedPreferences("login",MODE_PRIVATE);
+        checkusn=pref.getString("username",null);
+        if(checkusn!=null)
+        {
+            Intent i=new Intent(getApplicationContext(),welcomeActivity.class);
+            startActivity(i);
+        }
+
+
         ed1=(EditText)findViewById(R.id.sid);
         ed2=(EditText)findViewById(R.id.Pass);
         but1=(Button)findViewById(R.id.But1);
@@ -32,7 +43,16 @@ String usn="mzc",id="college";
                 str2=ed2.getText().toString();
                 if((str1 .equals(usn)) && (str2.equals(id)))
                 {
+                    SharedPreferences.Editor edit=getSharedPreferences("login",MODE_PRIVATE).edit();
+                    edit.putString("username",str1);
+                    edit.putString("password",str2);
+                    edit.apply();//edit.commit
+
+
+
                     Intent j=new Intent(getApplicationContext(),welcomeActivity.class);
+//                    j.putExtra("StudentID",str1);
+//                    j.putExtra("Password",str2);
                     startActivity(j);
                 }
                 
